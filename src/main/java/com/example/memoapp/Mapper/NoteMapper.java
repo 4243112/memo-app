@@ -12,7 +12,7 @@ public interface NoteMapper {
     List<Note> findAll();
 
     @Insert("insert into notes(title, content) values (#{title}, #{content})")
-    @Options(useGeneratedKeys = true, keyProperty = "id,createdAt", keyColumn = "id,created_at")
+    @Options(useGeneratedKeys = true, keyProperty = "id", keyColumn = "id")
     int insert(Note note);
 
     @Select("select id, title, content, created_at from notes where id = #{id}")

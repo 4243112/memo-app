@@ -2,8 +2,6 @@ package com.example.memoapp.Controller;
 
 import com.example.memoapp.dto.Note;
 import com.example.memoapp.service.NoteService;
-import org.springframework.http.HttpHeaders;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.util.UriComponentsBuilder;
@@ -27,6 +25,7 @@ public class NoteController {
         return ResponseEntity.ok(notes);
     }
 
+    @PostMapping
     public ResponseEntity<Note> saveNote(@RequestBody Note note,
                                          UriComponentsBuilder uriBuilder){
         Note createdNote = noteService.save(note);
@@ -45,7 +44,7 @@ public class NoteController {
 
     @GetMapping("/{id}")
     public ResponseEntity<Note> findById(@PathVariable long id){
-        Note note = noteService.findByid(id);
+        Note note = noteService.findById(id);
         return ResponseEntity.ok(note);
     }
 
@@ -56,9 +55,9 @@ public class NoteController {
         return ResponseEntity.noContent().build();
     }
 
-    @PutMapping
+    @PutMapping("/{id}")
     public ResponseEntity<Note> update (@PathVariable long id, @RequestBody Note note){
-        noteService.Update(note,id);
-        return ResponseEntity.ok(note);
+        Note updatedNote = noteService.update(note, id);
+        return ResponseEntity.ok(updatedNote);
     }
 }

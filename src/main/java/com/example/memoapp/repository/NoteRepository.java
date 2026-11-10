@@ -14,7 +14,7 @@ public class NoteRepository {
     public NoteRepository(NoteMapper noteMapper) {
         this.noteMapper = noteMapper;
     }
-    public List<Note> findALl() {
+    public List<Note> findAll() {
         return noteMapper.findAll();
     }
     public int insertNote(Note note) {

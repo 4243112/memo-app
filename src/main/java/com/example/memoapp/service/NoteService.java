@@ -34,7 +34,7 @@ public class NoteService {
         return note;
     }
 
-    public Note findByid(long id){
+    public Note findById(long id){
         Note note =  noteRepository.findById(id);
 
         if (note == null){
@@ -51,7 +51,7 @@ public class NoteService {
     }
 
     @Transactional
-    public Note Update(Note note, long id){
+    public Note update(Note note, long id){
         if (note.getTitle() == null || note.getTitle().isEmpty()){
             throw new NoteArgumentNotValidException("title is empty");
         }
@@ -64,7 +64,7 @@ public class NoteService {
             throw new NoteNotFoundException(id);
         }
         note.setId(id);
-        noteRepository.Update(note);
+        noteRepository.update(note);
         return note;
     }
 }

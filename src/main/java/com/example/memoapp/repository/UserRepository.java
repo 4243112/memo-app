@@ -1,7 +1,7 @@
 package com.example.memoapp.repository;
 
-import com.example.memoapi.dto.User;
-import com.example.memoapp.Mapper.NoteMapperapper.UserMapper;
+import com.example.memoapp.Mapper.UserMapper;
+import com.example.memoapp.dto.User;
 import org.springframework.stereotype.Repository;
 
 @Repository
