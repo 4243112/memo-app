@@ -3,13 +3,14 @@ package com.example.memoapp.Controller;
 import com.example.memoapp.auth.AuthenticationService;
 import com.example.memoapp.dto.LoginRequest;
 import com.example.memoapp.dto.LoginResponse;
+import com.example.memoapp.dto.RegisterRequest;
 import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
-@Controller
+@RestController
 @RequestMapping("/api/auth")
 public class AuthController {
     private final AuthenticationService authenticationService;
@@ -17,9 +18,16 @@ public class AuthController {
     public AuthController(AuthenticationService authenticationService) {
         this.authenticationService = authenticationService;
     }
+
     @PostMapping("/login")
     public ResponseEntity<LoginResponse> login(@RequestBody LoginRequest loginRequest) {
         LoginResponse response = authenticationService.authentication(loginRequest);
+        return ResponseEntity.ok(response);
+    }
+
+    @PostMapping("/register")
+    public ResponseEntity<LoginResponse> register(@RequestBody RegisterRequest registerRequest) {
+        LoginResponse response = authenticationService.register(registerRequest);
         return ResponseEntity.ok(response);
     }
 }
